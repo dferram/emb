@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonios — EMB San Juan del Río</title>
+    <meta name="description" content="Descubre lo que dicen los jugadores y padres de familia sobre la experiencia formativa en EMB San Juan del Río.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Extra styles specifically for this page -->
+    <style>
+        .testimonials-hero {
+            position: relative;
+            padding: 12rem 0 6rem;
+            background: var(--navy);
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 8px solid var(--bronze);
+        }
+
+        .testimonials-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 15px);
+            pointer-events: none;
+        }
+
+        .testimonials-hero__title {
+            font-family: 'Teko', sans-serif;
+            color: var(--white);
+            text-transform: uppercase;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonials-hero__subtitle {
+            color: var(--gray-300);
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .masonry-grid {
+            padding: 6rem 0;
+            column-count: 1;
+            column-gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .masonry-grid { column-count: 2; }
+        }
+        
+        @media (min-width: 1024px) {
+            .masonry-grid { column-count: 3; }
+        }
+        
+        .testimonial-card {
+            break-inside: avoid;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            transition: all var(--transition-base);
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--navy);
+            transform: translateY(-6px);
+            box-shadow: 12px 12px 0px var(--bronze);
+        }
+        
+        .testimonial-card__quote-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 3rem;
+            color: var(--gray-100);
+            z-index: 0;
+            transition: color var(--transition-base);
+        }
+        
+        .testimonial-card:hover .testimonial-card__quote-icon {
+            color: rgba(255, 101, 0, 0.1); /* light bronze */
+        }
+        
+        .testimonial-card__text {
+            color: var(--navy);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card__author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid var(--gray-100);
+            padding-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card__avatar {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .testimonial-card__info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-card__name {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1.0625rem;
+            line-height: 1.2;
+        }
+        
+        .testimonial-card__role {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+        
+        /* Highlighted Testimonial */
+        .testimonial-card--highlight {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+        
+        .testimonial-card--highlight .testimonial-card__quote-icon {
+            color: rgba(255,255,255,0.05);
+        }
+        
+        .testimonial-card--highlight .testimonial-card__text {
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .testimonial-card--highlight .testimonial-card__name {
+            color: var(--bronze);
+        }
+        
+        .testimonial-card--highlight .testimonial-card__role {
+            color: var(--gray-400);
+        }
+        
+        .testimonial-card--highlight .testimonial-card__avatar {
+            background: var(--bronze);
+            color: var(--white);
+        }
+        
+        .testimonial-card--highlight .testimonial-card__author {
+            border-top-color: rgba(255,255,255,0.1);
+        }
+
+        .testimonial-card--highlight:hover {
+            box-shadow: 12px 12px 0px var(--bronze);
+        }
+        
+        .newspaper-feature {
+            background: var(--light);
+            padding: 6rem 0;
+            border-bottom: 8px solid var(--navy);
+        }
+        
+        .newspaper-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .newspaper-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .newspaper-image {
+            border: 4px solid var(--white);
+            box-shadow: 12px 12px 0px var(--navy);
+            transform: rotate(-2deg);
+            transition: transform var(--transition-base);
+        }
+        
+        .newspaper-image:hover {
+            transform: rotate(0deg);
+        }
+        
+        .newspaper-content h3 {
+            font-family: 'Teko', sans-serif;
+            color: var(--navy);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .newspaper-content p {
+            color: var(--gray-600);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/emb.png" type="image/png">
+</head>
+<body>
+
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar__inner">
+                <a href="index.html" class="navbar__logo">
+                    <img src="assets/emb.png" alt="EMB Logo">
+                    <span class="navbar__logo-text">EMB</span>
+                </a>
+
+                <div class="navbar__links">
+                    <a href="index.html" class="navbar__link">Inicio</a>
+                    <a href="coach.html" class="navbar__link">El Coach</a>
+                    <a href="testimonios.html" class="navbar__link" style="color: var(--bronze);">Testimonios</a>
+                    <a href="index.html#contacto" class="btn-primary navbar__cta btn-primary--white">Contacto</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="navbar__mobile-btn" aria-label="Abrir menú">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index.html" class="mobile-menu__link">Inicio</a>
+            <a href="coach.html" class="mobile-menu__link">El Coach</a>
+            <a href="testimonios.html" class="mobile-menu__link" style="color: var(--bronze);">Testimonios</a>
+            <a href="index.html#contacto" class="mobile-menu__link mobile-menu__link--cta">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <header class="testimonials-hero">
+        <div class="container">
+            <h1 class="testimonials-hero__title reveal">La Familia EMB</h1>
+            <p class="testimonials-hero__subtitle reveal">El impacto de nuestra academia medido en las palabras de quienes sudan la camiseta cada día, y de los padres que confían en nosotros.</p>
+        </div>
+    </header>
+    
+    <!-- ═══════════ NEWSPAPER FEATURE ═══════════ -->
+    <section class="newspaper-feature">
+        <div class="container">
+            <div class="newspaper-grid">
+                <div class="newspaper-image reveal" data-lightbox>
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.16 PM.jpeg" alt="Artículo periodístico en El Sol de San Juan del Río">
+                </div>
+                <div class="newspaper-content reveal">
+                    <h3>Más que baloncesto</h3>
+                    <p>
+                        No solo nos enorgullece ver a nuestros jugadores alzar trofeos y recibir homenajes por representar al estado en los <strong>Juegos Nacionales CONADE</strong>, sino presenciar el vínculo que se forma.
+                    </p>
+                    <p>
+                        Como comentó un pupilo nacional tras el reportaje de <em>El Sol de San Juan del Río</em>:
+                    </p>
+                    <blockquote style="font-size: 1.5rem; font-style: italic; font-weight: 700; color: var(--bronze); border-left: 4px solid var(--navy); padding-left: 1rem; margin-top: 1rem;">
+                        "Ese es mi coach y mi maestro de vida 💪"
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ TESTIMONIALS GRID ═══════════ -->
+    <section class="container" style="padding-bottom: 6rem;">
+        <div class="masonry-grid reveal">
+            
+            <!-- Highlighted Testimonial -->
+            <div class="testimonial-card testimonial-card--highlight">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                <p class="testimonial-card__text">
+                    "Entrenar en EMB me cambió completamente la forma de ver el juego. No solo mejoré mi bote y mi tiro, aprendí a leer la defensa y sobre todo a tener disciplina. Hemos ganado torneos duros, pero la hermandad que tenemos en el equipo es lo mejor de todo."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">S</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">Santiago</span>
+                        <span class="testimonial-card__role">Jugador Categoría Juvenil</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                <p class="testimonial-card__text">
+                    "Mi hijo empezó desde los 8 años en la academia. El cambio ha sido increíble; además de la técnica deportiva, el coach les enseña valores. Es un ambiente súper sano y competitivo. Cada sábado estamos en la grada apoyando al equipo."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">MF</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">María Fernanda</span>
+                        <span class="testimonial-card__role">Madre de Familia</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                <p class="testimonial-card__text">
+                    "Las clínicas de tiro fueron la clave para que me aceptaran en la selección de mi preparatoria. El nivel de exigencia es alto, te hacen repetir hasta que la mecánica sea perfecta, pero los resultados hablan por sí solos en la duela."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">D</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">Diego R.</span>
+                        <span class="testimonial-card__role">Ex Alumno (Ahora en Prepa)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                <p class="testimonial-card__text">
+                    "Yo empecé con cero experiencia. Al principio me frustraba, pero aquí nunca te dejan atrás. Tienen programas desde cero. Ahora formo parte del equipo femenil Galaxy y hemos sacado terceros lugares a nivel estatal."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">V</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">Valeria</span>
+                        <span class="testimonial-card__role">Jugadora - Equipo Femenil</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                <p class="testimonial-card__text">
+                    "La intensidad de los entrenamientos es brutal (en el buen sentido). Te preparan para ritmos de juego altos. Mucho acondicionamiento físico. Sin esa preparación, las medallas del torneo de verano no habrían sido posibles."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">E</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">Eduardo</span>
+                        <span class="testimonial-card__role">Jugador - Categoría Libre</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Highlighted Testimonial 2 -->
+            <div class="testimonial-card testimonial-card--highlight">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                <p class="testimonial-card__text">
+                    "Como padres siempre buscamos un lugar seguro donde nuestros hijos crezcan. EMB superó nuestras expectativas. El coach es un verdadero líder."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar">H</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">Héctor G.</span>
+                        <span class="testimonial-card__role">Padre de Familia</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════ CTA / BOTTOM ═══════════ -->
+    <section style="background: var(--navy); padding: 5rem 0; text-align: center; border-bottom: 4px solid var(--bronze);">
+        <div class="container reveal">
+            <h2 style="font-family: 'Teko', sans-serif; font-size: 3rem; color: var(--white); text-transform: uppercase; margin-bottom: 2rem;">¿Listo para escribir tu propia historia?</h2>
+            <a href="index.html#contacto" class="btn-primary btn-primary--large">
+                Únete a EMB Hoy <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer" style="border-top: none;">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__brand-logo">
+                        <img src="assets/emb.png" alt="EMB Logo">
+                        <span class="footer__brand-name">EMB</span>
+                    </div>
+                    <p class="footer__brand-text">Formando el futuro del baloncesto en San Juan del Río. Disciplina, técnica superior y pasión inquebrantable.</p>
+                </div>
+
+                <nav class="footer__nav">
+                    <a href="index.html" class="footer__nav-link">Inicio</a>
+                    <a href="coach.html" class="footer__nav-link">Nuestro Coach</a>
+                    <a href="testimonios.html" class="footer__nav-link">Testimonios</a>
+                </nav>
+
+                <div class="footer__socials">
+                    <h4 class="footer__socials-title">Síguenos</h4>
+                    <div class="footer__socials-links">
+                        <a href="#" class="footer__social-btn" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="footer__social-btn" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-btn" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>&copy; <span id="year"></span> EMB San Juan del Río. Todos los derechos reservados.</p>
+                <div class="footer__legal">
+                    <a href="#">Aviso de Privacidad</a>
+                    <a href="#">Términos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════ LIGHTBOX ═══════════ -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox__close" aria-label="Cerrar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="" alt="Vista ampliada">
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Coach — EMB San Juan del Río</title>
+    <meta name="description" content="Conoce la historia, filosofía y trayectoria del head coach de EMB San Juan del Río. Más de 10 años formando campeones en el baloncesto.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Extra styles specifically for this page to handle the layout -->
+    <style>
+        .coach-hero {
+            position: relative;
+            padding: 12rem 0 6rem;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-bottom: 8px solid var(--bronze);
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .coach-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(var(--bronze) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .coach-hero__title {
+            font-family: 'Teko', sans-serif;
+            color: var(--white);
+            text-transform: uppercase;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .coach-hero__subtitle {
+            color: var(--bronze);
+            font-family: 'Teko', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .story-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .story-grid {
+                grid-template-columns: 5fr 7fr;
+                gap: 5rem;
+            }
+            
+            .story-grid--reverse {
+                grid-template-columns: 7fr 5fr;
+            }
+            .story-grid--reverse .story-content {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .story-grid--reverse .story-image {
+                grid-column: 2;
+                grid-row: 1;
+            }
+        }
+
+        .story-content h2 {
+            font-family: 'Teko', sans-serif;
+            color: var(--navy);
+            text-transform: uppercase;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            color: var(--gray-600);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-content .quote {
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--bronze);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--navy);
+            font-weight: 600;
+            margin: 2rem 0;
+        }
+
+        .story-image img {
+            width: 100%;
+            border: 4px solid var(--navy);
+            box-shadow: 16px 16px 0px var(--bronze);
+            transition: transform 0.4s ease;
+        }
+        
+        .story-image:hover img {
+            transform: translate(-4px, -4px);
+        }
+        
+        .timeline {
+            background: var(--light);
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gray-300);
+        }
+        
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .timeline-item {
+                width: 50%;
+                padding-left: 0;
+                padding-right: 3rem;
+                margin-left: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 50%;
+                padding-left: 3rem;
+                padding-right: 0;
+            }
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 18px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bronze);
+            border: 4px solid var(--light);
+            box-sizing: content-box;
+            z-index: 2;
+        }
+        
+        @media (min-width: 768px) {
+            .timeline-dot {
+                left: auto;
+                right: -12px;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-dot {
+                right: auto;
+                left: -12px;
+            }
+        }
+        
+        .timeline-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 0;
+            position: relative;
+            transition: all var(--transition-base);
+        }
+        
+        .timeline-content:hover {
+            border-color: var(--navy);
+            box-shadow: 8px 8px 0px var(--bronze);
+            transform: translateY(-4px);
+        }
+        
+        .timeline-year {
+            font-family: 'Teko', sans-serif;
+            color: var(--bronze);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-text {
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+        }
+    </style>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/emb.png" type="image/png">
+</head>
+<body>
+
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar__inner">
+                <a href="index.html" class="navbar__logo">
+                    <img src="assets/emb.png" alt="EMB Logo">
+                    <span class="navbar__logo-text">EMB</span>
+                </a>
+
+                <div class="navbar__links">
+                    <a href="index.html" class="navbar__link">Inicio</a>
+                    <a href="coach.html" class="navbar__link" style="color: var(--bronze);">El Coach</a>
+                    <a href="testimonios.html" class="navbar__link">Testimonios</a>
+                    <a href="index.html#contacto" class="btn-primary navbar__cta btn-primary--white">Contacto</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="navbar__mobile-btn" aria-label="Abrir menú">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index.html" class="mobile-menu__link">Inicio</a>
+            <a href="coach.html" class="mobile-menu__link" style="color: var(--bronze);">El Coach</a>
+            <a href="testimonios.html" class="mobile-menu__link">Testimonios</a>
+            <a href="index.html#contacto" class="mobile-menu__link mobile-menu__link--cta">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <header class="coach-hero">
+        <div class="container">
+            <h1 class="coach-hero__title reveal">Nuestro Head Coach</h1>
+            <h2 class="coach-hero__subtitle reveal">Toda una vida dedicada al baloncesto</h2>
+        </div>
+    </header>
+
+    <!-- ═══════════ STORY SECTION 1 ═══════════ -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-image reveal" data-lightbox>
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM (1).jpeg" alt="El coach dando instrucciones en la cancha">
+                </div>
+                <div class="story-content reveal">
+                    <h2>La Visión Detrás de EMB</h2>
+                    <p>
+                        Con más de una década de experiencia formando jugadores, nuestro Head Coach ha convertido a <strong>EMB San Juan del Río</strong> en mucho más que una academia: es una familia donde se forjan campeones tanto dentro como fuera de la duela.
+                    </p>
+                    <p>
+                        Su filosofía se basa en un principio fundamental: el talento natural te lleva hasta cierto punto, pero es la disciplina, el trabajo arduo y los fundamentos los que te mantienen en la cima. Cada entrenamiento está diseñado para desafiar los límites de los jugadores.
+                    </p>
+                    <div class="quote">
+                        "El éxito en la cancha es un reflejo directo de tu compromiso durante la práctica invisible. Lo que haces cuando nadie te mira."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ STORY SECTION 2 (REVERSE) ═══════════ -->
+    <section class="story-section" style="background: var(--light);">
+        <div class="container">
+            <div class="story-grid story-grid--reverse">
+                <div class="story-image reveal" data-lightbox>
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (9).jpeg" alt="El coach con un equipo campeón">
+                </div>
+                <div class="story-content reveal">
+                    <h2>Forjando Campeones</h2>
+                    <p>
+                        A lo largo de los años, el trabajo formativo ha dado grandes frutos. Diversas generaciones de las categorías juveniles, cadetes y libre han levantado campeonatos locales, estatales y han participado en justas nacionales como los <strong>Juegos Nacionales CONADE</strong>.
+                    </p>
+                    <p>
+                        Bajo su dirección técnica, equipos emblemáticos de la academia como las "Puskats" y "Galaxy Basketball" han dominado sus respectivas ligas. Esta consistencia en los resultados no es casualidad, es producto de una metodología estricta, acondicionamiento de élite y un scouting detallado.
+                    </p>
+                    <a href="testimonios.html" class="btn-primary" style="margin-top: 1rem;">
+                        Lee la opinión de sus alumnos <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ═══════════ STORY SECTION 3 ═══════════ -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-image reveal" data-lightbox>
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.11 PM.jpeg" alt="Instructor en clínica grupal">
+                </div>
+                <div class="story-content reveal">
+                    <h2>Impacto en la Comunidad</h2>
+                    <p>
+                        El legado del coach trasciende los trofeos. Uno de los pilares de su carrera es el impacto social mediante clínicas masivas de baloncesto y el desarrollo de niños desde temprana edad.
+                    </p>
+                    <p>
+                        A través de su enseñanza, docenas de jóvenes de San Juan del Río y áreas circunvecinas han encontrado en el deporte una forma sana de vida, alejándose de malos hábitos y, en varios casos, consiguiendo becas deportivas universitarias gracias a las herramientas y fundamentos adquiridos en EMB.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ TIMELINE ═══════════ -->
+    <section class="timeline">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                <h2 style="font-family: 'Teko', sans-serif; font-size: 3.5rem; color: var(--navy); text-transform: uppercase; margin-bottom: 0.5rem;">Trayectoria Destacada</h2>
+                <div style="width: 4rem; height: 4px; background: var(--bronze); margin: 0 auto;"></div>
+            </div>
+            
+            <div class="timeline-container">
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2011</div>
+                        <h3 class="timeline-title">Los Inicios de una Visión</h3>
+                        <p class="timeline-text">Inicia el proyecto formativo compitiendo en la Liga Universitaria de San Juan del Río con categorías de formación infantil, cimentando las bases.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Consolidación</div>
+                        <h3 class="timeline-title">Dominio Local</h3>
+                        <p class="timeline-text">La academia comienza a cosechar campeonatos ininterrumpidos en diferentes categorías y torneos de verano locales.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Proyección</div>
+                        <h3 class="timeline-title">Participaciones Estatales</h3>
+                        <p class="timeline-text">Equipos representativos de la academia comienzan a competir exitosamente a nivel estatal, logrando podios contra potencias de la capital queretana.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">En la Élite</div>
+                        <h3 class="timeline-title">Reconocimiento Nacional</h3>
+                        <p class="timeline-text">Jugadores forjados en EMB son reconocidos por representar y poner en alto a San Juan del Río en los prestigiosos Juegos Nacionales CONADE.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__brand-logo">
+                        <img src="assets/emb.png" alt="EMB Logo">
+                        <span class="footer__brand-name">EMB</span>
+                    </div>
+                    <p class="footer__brand-text">Formando el futuro del baloncesto en San Juan del Río. Disciplina, técnica superior y pasión inquebrantable.</p>
+                </div>
+
+                <nav class="footer__nav">
+                    <a href="index.html" class="footer__nav-link">Inicio</a>
+                    <a href="coach.html" class="footer__nav-link">Nuestro Coach</a>
+                    <a href="testimonios.html" class="footer__nav-link">Testimonios</a>
+                </nav>
+
+                <div class="footer__socials">
+                    <h4 class="footer__socials-title">Síguenos</h4>
+                    <div class="footer__socials-links">
+                        <a href="#" class="footer__social-btn" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="footer__social-btn" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-btn" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>&copy; <span id="year"></span> EMB San Juan del Río. Todos los derechos reservados.</p>
+                <div class="footer__legal">
+                    <a href="#">Aviso de Privacidad</a>
+                    <a href="#">Términos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════ LIGHTBOX ═══════════ -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox__close" aria-label="Cerrar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="" alt="Vista ampliada">
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
