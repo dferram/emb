@@ -1,415 +1,537 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMB San Juan del Río | MVP</title>
+    <title>EMB San Juan del Río — Academia de Baloncesto</title>
+    <meta name="description" content="Academia de baloncesto EMB en San Juan del Río. Entrenamiento élite, fundamentos técnicos y clínicas de tiro para todas las edades. ¡Eleva tu nivel!">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#0B192C',
-                        'navy-light': '#1A2A42',
-                        bronze: '#FF6500',
-                        'bronze-hover': '#E55A00',
-                        light: '#F8F9FA'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Teko', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom Styles for Sharpness and Energy */
-        body {
-            background-color: #F8F9FA;
-            color: #0B192C;
-        }
-        .btn-primary {
-            @apply inline-flex items-center justify-center bg-bronze text-white font-heading text-2xl uppercase tracking-wider px-8 py-3 transition-all duration-300 shadow-[4px_4px_0px_#0B192C] border-2 border-transparent;
-        }
-        .btn-primary:hover {
-            @apply bg-bronze-hover translate-y-[-2px] translate-x-[-2px] shadow-[6px_6px_0px_#0B192C] border-[#0B192C];
-        }
-        .btn-primary:active {
-            @apply translate-y-[2px] translate-x-[2px] shadow-[2px_2px_0px_#0B192C];
-        }
-        .sharp-card {
-            @apply bg-white border-2 border-navy p-8 transition-transform duration-300 relative overflow-hidden group flex flex-col;
-        }
-        .sharp-card::before {
-            content: '';
-            @apply absolute top-0 left-0 w-full h-1 bg-bronze transform scale-x-0 origin-left transition-transform duration-300 z-10;
-        }
-        .sharp-card:hover::before {
-            @apply scale-x-100;
-        }
-        .sharp-card:hover {
-            @apply -translate-y-2 shadow-[8px_8px_0px_#0B192C];
-        }
-        /* Dynamic Background for Hero */
-        .hero-bg {
-            background: linear-gradient(135deg, #0B192C 0%, #1A2A42 100%);
-            position: relative;
-        }
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background-image: radial-gradient(#FF6500 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-        /* Hide scrollbar on mobile forms optionally */
-    </style>
-</head>
-<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-bronze selection:text-white">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-colors duration-300 py-3 bg-navy border-b border-slate-800 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <a href="#inicio" class="flex-shrink-0 flex items-center gap-3 group">
-                    <img src="assets/emb.png" alt="EMB Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='https://placehold.co/100x40/0B192C/FF6500?text=EMB'">
-                    <span class="text-white font-heading text-4xl tracking-wide uppercase mt-1">EMB</span>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/emb.png" type="image/png">
+</head>
+<body>
+
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar__inner">
+                <a href="#inicio" class="navbar__logo">
+                    <img src="assets/emb.png" alt="EMB Logo">
+                    <span class="navbar__logo-text">EMB</span>
                 </a>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a href="#inicio" class="text-white hover:text-bronze font-heading text-2xl uppercase tracking-wider transition-colors">Inicio</a>
-                    <a href="#programas" class="text-white hover:text-bronze font-heading text-2xl uppercase tracking-wider transition-colors">Programas</a>
-                    <a href="#coach" class="text-white hover:text-bronze font-heading text-2xl uppercase tracking-wider transition-colors">Coach</a>
-                    <a href="#contacto" class="btn-primary !text-lg !py-2 !px-6 !shadow-[3px_3px_0px_#FFFFFF] hover:!border-white">Contacto</a>
+
+                <div class="navbar__links">
+                    <a href="#inicio" class="navbar__link">Inicio</a>
+                    <a href="#galeria" class="navbar__link">Galería</a>
+                    <a href="#programas" class="navbar__link">Programas</a>
+                    <a href="#entrenamientos" class="navbar__link">Entrenamientos</a>
+                    <a href="#coach" class="navbar__link">Coach</a>
+                    <a href="#contacto" class="btn-primary navbar__cta btn-primary--white">Contacto</a>
                 </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-white hover:text-bronze focus:outline-none transition-colors p-2">
-                        <i class="fa-solid fa-bars text-3xl"></i>
+
+                <button id="mobile-menu-btn" class="navbar__mobile-btn" aria-label="Abrir menú">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#inicio" class="mobile-menu__link">Inicio</a>
+            <a href="#galeria" class="mobile-menu__link">Galería</a>
+            <a href="#programas" class="mobile-menu__link">Programas</a>
+            <a href="#entrenamientos" class="mobile-menu__link">Entrenamientos</a>
+            <a href="#coach" class="mobile-menu__link">Coach</a>
+            <a href="#contacto" class="mobile-menu__link mobile-menu__link--cta">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero__inner">
+                <div class="hero__content">
+                    <div class="hero__badge">
+                        <span>Academia de Baloncesto</span>
+                    </div>
+                    <h1 class="hero__title">EMB San Juan<br>Del Río</h1>
+                    <h2 class="hero__subtitle">Eleva tu Nivel</h2>
+                    <p class="hero__quote">
+                        "Amar el baloncesto es sentir que cada vez que tocás el balón, estás en casa."
+                    </p>
+                    <a href="#contacto" class="btn-primary btn-primary--large">
+                        ¡Únete al Equipo! <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__image-frame">
+                        <img src="assets/WhatsApp Image 2026-03-07 at 3.01.14 PM (5).jpeg" alt="Equipo EMB San Juan del Río">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ GALERÍA – Carrusel de Entrenamiento ═══════════ -->
+    <section id="galeria" class="gallery section-padding">
+        <div class="container">
+            <div class="gallery__header reveal">
+                <h2 class="gallery__title">La Cancha es Nuestra Casa</h2>
+                <div class="gallery__accent"></div>
+                <p class="gallery__subtitle">Momentos de entrenamiento, esfuerzo y trabajo en equipo que definen el espíritu de EMB.</p>
+            </div>
+
+            <div data-carousel class="reveal">
+                <div class="carousel">
+                    <div class="carousel__track">
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.11 PM (2).jpeg" alt="Entrenamiento en gimnasio" loading="lazy">
+                                <span class="carousel__caption">Entrenamiento intensivo</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM (1).jpeg" alt="Calentamiento en cancha" loading="lazy">
+                                <span class="carousel__caption">Calentamiento dinámico</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.11 PM.jpeg" alt="Ejercicios de agilidad" loading="lazy">
+                                <span class="carousel__caption">Agilidad y velocidad</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM.jpeg" alt="Trabajo en equipo" loading="lazy">
+                                <span class="carousel__caption">Trabajo en equipo</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.11 PM (1).jpeg" alt="Acción en la cancha" loading="lazy">
+                                <span class="carousel__caption">En acción</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM (2).jpeg" alt="Ejercicios de fundamentación" loading="lazy">
+                                <span class="carousel__caption">Fundamentos técnicos</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM (3).jpeg" alt="Práctica defensiva" loading="lazy">
+                                <span class="carousel__caption">Práctica defensiva</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.14 PM.jpeg" alt="Sesión de entrenamiento" loading="lazy">
+                                <span class="carousel__caption">Sesión grupal</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.14 PM (1).jpeg" alt="Clínica de tiro" loading="lazy">
+                                <span class="carousel__caption">Clínica de tiro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel__controls">
+                    <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel__dots"></div>
+                    <button class="carousel__btn carousel__btn--next" aria-label="Siguiente">
+                        <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-navy-light text-center border-t border-slate-700 shadow-xl absolute w-full left-0 top-full">
-            <a href="#inicio" class="block text-white hover:text-bronze hover:bg-slate-800 font-heading text-2xl uppercase tracking-wider py-4 border-b border-slate-700 transition-colors">Inicio</a>
-            <a href="#programas" class="block text-white hover:text-bronze hover:bg-slate-800 font-heading text-2xl uppercase tracking-wider py-4 border-b border-slate-700 transition-colors">Programas</a>
-            <a href="#coach" class="block text-white hover:text-bronze hover:bg-slate-800 font-heading text-2xl uppercase tracking-wider py-4 border-b border-slate-700 transition-colors">Coach</a>
-            <a href="#contacto" class="block text-white bg-bronze hover:bg-bronze-hover font-heading text-2xl uppercase tracking-wider py-4 transition-colors">Contacto</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-bg flex items-center pt-32 pb-20 min-h-[90vh] md:pt-40 md:pb-32 overflow-hidden border-b-8 border-bronze">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-            <div class="text-center lg:text-left lg:w-[60%] flex flex-col items-center lg:items-start">
-                <div class="inline-block bg-bronze text-white font-heading text-xl md:text-2xl uppercase px-4 py-1 mb-6 border-2 border-transparent shadow-[4px_4px_0px_#FFFFFF] transform -skew-x-6">
-                    <span class="inline-block skew-x-6">Academia de Baloncesto</span>
-                </div>
-                <!-- Title structured closely to standard requirement -->
-                <h1 class="text-6xl md:text-8xl lg:text-9xl font-heading text-white uppercase leading-[0.85] mb-6 tracking-tight">
-                    EMB San Juan<br>
-                    Del Río
-                </h1>
-                <h2 class="text-4xl md:text-6xl font-heading text-bronze uppercase leading-none mb-8">
-                    Eleva tu Nivel
-                </h2>
-                
-                <p class="mt-2 w-full max-w-2xl text-xl md:text-2xl text-slate-300 mb-10 border-l-4 border-bronze pl-5 text-left italic font-medium">
-                    "Amar el baloncesto es sentir que cada vez que tocás el balón, estás en casa."
-                </p>
-                <div class="mt-4">
-                    <a href="#contacto" class="btn-primary !text-3xl !py-4 !px-10">
-                        ¡Únete al Equipo! <i class="fa-solid fa-arrow-right ml-3 text-xl"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="lg:w-[40%] relative flex justify-center mt-12 lg:mt-0 px-4 md:px-0">
-                <!-- Abstract hero graphic / visual -->
-                <div class="w-full max-w-[400px] aspect-square relative font-heading text-bronze uppercase flex items-center justify-center border-4 border-white p-4 transition-transform duration-700 hover:rotate-3 shadow-[16px_16px_0px_#FF6500]">
-                   <!-- Placeholder or actual image -->
-                   <img src="assets/emb.png" alt="Acción en la cancha" class="w-full h-full object-cover filter contrast-125 saturate-150 transition-all duration-500" onerror="this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
-                   <!-- Decorative sharp elements -->
-                   <div class="absolute -top-8 -right-8 w-16 h-16 bg-bronze z-[-1]"></div>
-                   <div class="absolute -bottom-8 -left-8 w-16 h-16 bg-navy border-4 border-bronze z-[-1]"></div>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <!-- Programas Section -->
-    <section id="programas" class="py-24 md:py-32 bg-light relative scroll-mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 relative">
-                <span class="text-[120px] md:text-[200px] font-heading font-bold text-slate-200 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 uppercase whitespace-nowrap opacity-50 select-none">Entrena</span>
-                <h2 class="text-5xl md:text-7xl font-heading text-navy uppercase mb-4 relative z-10">Nuestros Programas</h2>
-                <div class="w-24 h-2 bg-bronze mx-auto mb-6 relative z-10"></div>
-                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium relative z-10">Metodología rigurosa para desarrollar todo tu potencial en la cancha, desde la base técnica hasta el nivel competitivo élite.</p>
+    <!-- ═══════════ PROGRAMAS ═══════════ -->
+    <section id="programas" class="programs section-padding">
+        <div class="container">
+            <div class="programs__header reveal">
+                <span class="programs__watermark">Entrena</span>
+                <h2 class="programs__title">Nuestros Programas</h2>
+                <div class="programs__accent"></div>
+                <p class="programs__description">Metodología rigurosa para desarrollar todo tu potencial en la cancha, desde la base técnica hasta el nivel competitivo élite.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-full">
+            <div class="programs__grid">
                 <!-- Card 1 -->
-                <div class="sharp-card group flex-1">
-                    <div class="w-20 h-20 bg-navy text-bronze flex items-center justify-center text-4xl mb-8 shadow-[6px_6px_0px_#FF6500] group-hover:-translate-y-1 transition-transform">
+                <div class="program-card reveal">
+                    <div class="program-card__icon program-card__icon--default">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <h3 class="text-4xl font-heading text-navy uppercase mb-4 leading-none">Entrenamiento Élite</h3>
-                    <p class="text-gray-600 mb-8 flex-grow text-lg">Diseñado para jugadores con experiencia buscando su máximo nivel competitivo. Acondicionamiento físico superior, táctica avanzada y juegos de alta intensidad en situación real.</p>
-                    <a href="#contacto" class="text-navy font-bold uppercase tracking-wider hover:text-bronze flex items-center gap-2 transition-colors mt-auto w-fit text-lg">
-                        Inscribirse <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    <h3 class="program-card__title">Entrenamiento Élite</h3>
+                    <p class="program-card__text">Diseñado para jugadores con experiencia buscando su máximo nivel competitivo. Acondicionamiento físico superior, táctica avanzada y juegos de alta intensidad en situación real.</p>
+                    <a href="#contacto" class="program-card__cta">
+                        Inscribirse <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="sharp-card bg-navy text-white group-hover:bg-[#12223A] !border-none shadow-[12px_12px_0px_#FF6500] transform md:-translate-y-4 flex-1">
-                    <style>
-                        .sharp-card.bg-navy::before { background-color: #FFFFFF; }
-                        .sharp-card.bg-navy:hover { box-shadow: 16px 16px 0px #FF6500; }
-                    </style>
-                    <div class="w-20 h-20 bg-bronze text-white flex items-center justify-center text-4xl mb-8 shadow-[6px_6px_0px_#FFFFFF] group-hover:-translate-y-1 transition-transform">
+                <div class="program-card reveal">
+                    <div class="program-card__icon program-card__icon--default">
                         <i class="fa-solid fa-basketball"></i>
                     </div>
-                    <h3 class="text-4xl font-heading text-white uppercase mb-4 leading-none">Fundamentos Técnicos</h3>
-                    <p class="text-slate-300 mb-8 flex-grow text-lg">La base sólida que marca la diferencia. Domina el bote de balón, mecánicas de pase, posturas defensivas y control de rebotes. Ideal para cimentar una carrera fuerte.</p>
-                    <a href="#contacto" class="text-bronze font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 transition-colors mt-auto w-fit text-lg">
-                        Inscribirse <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    <h3 class="program-card__title">Fundamentos Técnicos</h3>
+                    <p class="program-card__text">La base sólida que marca la diferencia. Domina el bote de balón, mecánicas de pase, posturas defensivas y control de rebotes. Ideal para cimentar una carrera fuerte.</p>
+                    <a href="#contacto" class="program-card__cta">
+                        Inscribirse <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="sharp-card group flex-1">
-                    <div class="w-20 h-20 bg-navy text-bronze flex items-center justify-center text-4xl mb-8 shadow-[6px_6px_0px_#FF6500] group-hover:-translate-y-1 transition-transform">
+                <div class="program-card reveal">
+                    <div class="program-card__icon program-card__icon--default">
                         <i class="fa-solid fa-crosshairs"></i>
                     </div>
-                    <h3 class="text-4xl font-heading text-navy uppercase mb-4 leading-none">Clínicas de Tiro</h3>
-                    <p class="text-gray-600 mb-8 flex-grow text-lg">Conviértete en una amenaza constante. Perfecciona tu mecánica, aprende a crear tu propio tiro, aumenta tu rango y mejora drásticamente tu porcentaje de acierto.</p>
-                    <a href="#contacto" class="text-navy font-bold uppercase tracking-wider hover:text-bronze flex items-center gap-2 transition-colors mt-auto w-fit text-lg">
-                        Inscribirse <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    <h3 class="program-card__title">Clínicas de Tiro</h3>
+                    <p class="program-card__text">Conviértete en una amenaza constante. Perfecciona tu mecánica, aprende a crear tu propio tiro, aumenta tu rango y mejora drásticamente tu porcentaje de acierto.</p>
+                    <a href="#contacto" class="program-card__cta">
+                        Inscribirse <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Coach Banner / Teaser Section -->
-    <section id="coach" class="py-24 bg-bronze border-y-8 border-navy relative overflow-hidden scroll-mt-16">
-        <div class="absolute inset-0 opacity-[0.05]" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 1px, transparent 15px);"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
-            <div class="md:w-3/4">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-16 h-1 bg-white"></div>
-                    <span class="text-white font-bold uppercase tracking-widest text-sm">Nuestro Liderazgo</span>
-                </div>
-                <h2 class="text-5xl md:text-7xl font-heading text-navy uppercase mb-6 leading-none">
-                    Experiencia & Pasión <br><span class="text-white">Formando Campeones</span>
-                </h2>
-                <p class="text-navy text-xl md:text-2xl font-semibold max-w-2xl leading-relaxed">
-                    Dirigidos por coaches especializados y comprometidos, en <span class="text-white">EMB San Juan del Río</span> no solo enseñamos técnicas, forjamos el carácter y la mentalidad ganadora que exige el juego.
-                </p>
-            </div>
-            <div class="md:w-1/4 flex justify-center md:justify-end">
-                <div class="text-[150px] md:text-[200px] text-white opacity-40 transform rotate-12 drop-shadow-2xl">
-                    <i class="fa-solid fa-whistle"></i> 
-                    <!-- Fallback if fa-whistle not in standard FA free, use clipboard-list -->
-                    <i class="fa-solid fa-clipboard-check absolute top-0 left-0"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacto Section (Lead Gen) -->
-    <section id="contacto" class="py-24 md:py-32 bg-white bg-[radial-gradient(#CBD5E1_1.5px,transparent_1.5px)] [background-size:24px_24px] scroll-mt-16">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-navy p-3 md:p-4 border-4 border-navy shadow-[16px_16px_0px_#FF6500] relative lg:ml-8 lg:mr-8">
-                
-                <!-- Decorative exterior accents -->
-                <div class="absolute -top-6 -left-6 w-12 h-12 bg-bronze border-4 border-white z-20 hidden md:block"></div>
-                <div class="absolute -bottom-6 -right-6 w-12 h-12 bg-bronze border-4 border-white z-20 hidden md:block"></div>
-
-                <div class="bg-white p-8 md:p-16 relative overflow-hidden">
-                    <!-- Background diagonal block -->
-                    <div class="absolute top-0 right-0 w-48 h-48 bg-light border-l-8 border-b-8 border-bronze transform translate-x-16 -translate-y-16 rotate-45 opacity-50"></div>
-
-                    <div class="text-center mb-12 relative z-10">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-navy text-white text-3xl mb-6 shadow-[4px_4px_0px_#FF6500]">
-                            <i class="fa-solid fa-envelope-open-text"></i>
+    <!-- ═══════════ ENTRENAMIENTOS (Cómo son) ═══════════ -->
+    <section id="entrenamientos" class="training section-padding">
+        <div class="container">
+            <div class="training__inner">
+                <div class="training__images reveal">
+                    <div class="training__mosaic">
+                        <div class="training__mosaic-item" data-lightbox>
+                            <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM (4).jpeg" alt="Entrenamiento grupal EMB" loading="lazy">
                         </div>
-                        <h2 class="text-5xl md:text-6xl font-heading text-navy uppercase mb-2">Da el Primer Paso</h2>
-                        <p class="text-slate-600 text-xl font-medium max-w-lg mx-auto mt-4">Únete a la academia en <span class="font-bold text-navy border-b-2 border-bronze">San Juan del Río</span>. Déjanos tus datos y nos pondremos en contacto.</p>
-                    </div>
-
-                    <!-- Form -->
-                    <div id="form-container" class="relative z-10 max-w-3xl mx-auto">
-                        <form id="lead-form" class="space-y-8">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="space-y-2">
-                                    <label for="nombre" class="block text-sm font-bold text-navy uppercase tracking-wider pl-1">Nombre Completo</label>
-                                    <input type="text" id="nombre" name="nombre" required 
-                                        class="w-full bg-light border-2 border-slate-300 px-5 py-4 focus:outline-none focus:border-bronze focus:bg-white transition-colors placeholder-gray-400 text-navy font-semibold text-lg"
-                                        placeholder="Ej. Juan Pérez">
-                                </div>
-                                <div class="space-y-2">
-                                    <label for="edad" class="block text-sm font-bold text-navy uppercase tracking-wider pl-1">Edad del Jugador</label>
-                                    <input type="number" id="edad" name="edad" required min="4" max="99"
-                                        class="w-full bg-light border-2 border-slate-300 px-5 py-4 focus:outline-none focus:border-bronze focus:bg-white transition-colors placeholder-gray-400 text-navy font-semibold text-lg"
-                                        placeholder="Ej. 14">
-                                </div>
-                            </div>
-                            <div class="space-y-2">
-                                <label for="whatsapp" class="block text-sm font-bold text-navy uppercase tracking-wider pl-1">WhatsApp de Contacto</label>
-                                <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 flex items-center pl-5 text-gray-500 text-xl">
-                                        <i class="fa-brands fa-whatsapp"></i>
-                                    </span>
-                                    <input type="tel" id="whatsapp" name="whatsapp" required 
-                                        class="w-full bg-light border-2 border-slate-300 pl-14 pr-5 py-4 focus:outline-none focus:border-bronze focus:bg-white transition-colors placeholder-gray-400 text-navy font-semibold text-lg"
-                                        placeholder="Tu número a 10 dígitos">
-                                </div>
-                            </div>
-                            
-                            <div class="pt-4">
-                                <button type="submit" class="w-full btn-primary !text-2xl !py-5 flex items-center justify-center gap-3 w-full">
-                                    Enviar mis datos <i class="fa-solid fa-paper-plane"></i>
-                                </button>
-                                <p class="text-center text-sm text-slate-500 mt-4 font-medium"><i class="fa-solid fa-lock mr-1"></i> Tus datos están seguros y no serán compartidos.</p>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Success Message (Hidden by default) -->
-                    <div id="success-message" class="hidden text-center py-12 relative z-10 flex flex-col items-center max-w-2xl mx-auto">
-                        <div class="w-24 h-24 bg-bronze text-white flex items-center justify-center text-5xl rounded-none mb-8 shadow-[8px_8px_0px_#0B192C] animate-bounce">
-                            <i class="fa-solid fa-check"></i>
+                        <div class="training__mosaic-item" data-lightbox>
+                            <img src="assets/WhatsApp Image 2026-03-07 at 3.01.14 PM (2).jpeg" alt="Ejercicios técnicos" loading="lazy">
                         </div>
-                        <h3 class="text-5xl md:text-6xl font-heading text-navy uppercase mb-6 leading-none">¡Gracias por tu interés!</h3>
-                        <p class="text-xl text-slate-600 mb-10 font-medium">Hemos recibido tus datos correctamente. Un coach de EMB se pondrá en contacto contigo muy pronto vía WhatsApp para darte toda la información.</p>
-                        <button id="reset-form" class="inline-flex items-center gap-2 text-navy font-bold uppercase tracking-wider hover:text-bronze transition-colors border-b-2 border-navy hover:border-bronze pb-1">
-                            <i class="fa-solid fa-rotate-left"></i> Enviar otra respuesta
-                        </button>
+                        <div class="training__mosaic-item" data-lightbox>
+                            <img src="assets/WhatsApp Image 2026-03-07 at 3.01.14 PM (3).jpeg" alt="Trabajo en cancha" loading="lazy">
+                        </div>
                     </div>
+                </div>
 
+                <div class="training__content reveal">
+                    <span class="training__label">Así Entrenamos</span>
+                    <h2 class="training__title">Disciplina, Técnica<br>& Mentalidad Ganadora</h2>
+                    <p class="training__text">
+                        Cada sesión de EMB está diseñada para exigir lo mejor de cada jugador. Combinamos ejercicios de acondicionamiento físico con desarrollo técnico individual y táctico colectivo, creando un ambiente competitivo donde todos crecen.
+                    </p>
+                    <ul class="training__features">
+                        <li class="training__feature">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Sesiones de 90 minutos de intensidad controlada y progresiva</span>
+                        </li>
+                        <li class="training__feature">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Trabajo individual de manejo de balón, tiro y movimientos sin balón</span>
+                        </li>
+                        <li class="training__feature">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Juegos en situación real 5v5 para aplicar lo aprendido</span>
+                        </li>
+                        <li class="training__feature">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Grupos divididos por edades y nivel para máximo aprovechamiento</span>
+                        </li>
+                        <li class="training__feature">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Participación en ligas y torneos locales y regionales</span>
+                        </li>
+                    </ul>
+                    <a href="#contacto" class="btn-primary">
+                        Agenda una Prueba <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-navy pt-20 pb-10 border-t-8 border-bronze">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-12 border-b border-slate-800 pb-16 mb-10">
-                <!-- Branding -->
-                <div class="md:w-1/3 text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
-                        <img src="assets/emb.png" alt="EMB Logo" class="h-16 w-auto grayscale contrast-200 brightness-200" onerror="this.src='https://placehold.co/100x40/0B192C/FFFFFF?text=EMB'">
-                        <div>
-                            <span class="text-white font-heading text-5xl tracking-wide uppercase leading-none block">EMB</span>
+    <!-- ═══════════ COACH ═══════════ -->
+    <section id="coach" class="coach section-padding">
+        <div class="container">
+            <div class="coach__inner">
+                <div class="coach__image-col reveal">
+                    <div class="coach__image-frame">
+                        <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (9).jpeg" alt="Coach con equipo campeón" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="coach__content reveal">
+                    <span class="coach__label">Nuestro Liderazgo</span>
+                    <h2 class="coach__title">
+                        <span class="coach__title-white">Experiencia & Pasión</span><br>
+                        <span class="coach__title-bronze">Formando Campeones</span>
+                    </h2>
+                    <p class="coach__text">
+                        EMB San Juan del Río nace de la pasión por el baloncesto y el compromiso con el desarrollo integral de los jóvenes atletas. Con más de una década de trayectoria formando jugadores en la región, nuestra academia se ha consolidado como referencia en San Juan del Río.
+                    </p>
+                    <p class="coach__text">
+                        Nuestro enfoque va más allá de la cancha: creemos en formar carácter, disciplina y trabajo en equipo. Cada entrenamiento es una oportunidad de mejorar no solo como jugador, sino como persona.
+                    </p>
+                    <p class="coach__text coach__text--highlight">
+                        "No solo enseñamos técnicas, forjamos la mentalidad ganadora que exige el juego."
+                    </p>
+
+                    <div class="coach__stats">
+                        <div class="coach__stat">
+                            <div class="coach__stat-number">10+</div>
+                            <div class="coach__stat-label">Años de Experiencia</div>
+                        </div>
+                        <div class="coach__stat">
+                            <div class="coach__stat-number">200+</div>
+                            <div class="coach__stat-label">Jugadores Formados</div>
+                        </div>
+                        <div class="coach__stat">
+                            <div class="coach__stat-number">15+</div>
+                            <div class="coach__stat-label">Torneos Ganados</div>
                         </div>
                     </div>
-                    <p class="text-slate-400 text-base max-w-sm mx-auto md:mx-0 font-medium">
-                        Formando el futuro del baloncesto en San Juan del Río. Disciplina, técnica superior y pasión inquebrantable.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ LOGROS – Carrusel de Trofeos ═══════════ -->
+    <section class="achievements section-padding">
+        <div class="container">
+            <div class="achievements__header reveal">
+                <h2 class="achievements__title">Nuestros Logros</h2>
+                <div class="achievements__accent"></div>
+                <p class="achievements__subtitle">El esfuerzo se refleja en los resultados. Orgullosos de nuestros equipos campeones.</p>
+            </div>
+
+            <div data-carousel class="reveal">
+                <div class="carousel">
+                    <div class="carousel__track">
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (11).jpeg" alt="Equipo campeón con trofeo" loading="lazy">
+                                <span class="carousel__caption">¡Campeonas!</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (9).jpeg" alt="Premiación del equipo" loading="lazy">
+                                <span class="carousel__caption">Premiación</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.13 PM (2).jpeg" alt="Liga Universitaria 2011" loading="lazy">
+                                <span class="carousel__caption">Desde 2011 formando talento</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.12 PM (4).jpeg" alt="Equipo Puskats EMB" loading="lazy">
+                                <span class="carousel__caption">Equipo Puskats EMB</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.14 PM (5).jpeg" alt="Clínica grupal" loading="lazy">
+                                <span class="carousel__caption">Clínica grupal EMB</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (12).jpeg" alt="Equipo representativo" loading="lazy">
+                                <span class="carousel__caption">Equipo representativo</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM.jpeg" alt="Momento de equipo" loading="lazy">
+                                <span class="carousel__caption">Familia EMB</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (1).jpeg" alt="Fotografía de equipo" loading="lazy">
+                                <span class="carousel__caption">Orgullo EMB</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (2).jpeg" alt="Jugadores en acción" loading="lazy">
+                                <span class="carousel__caption">Acción en torneo</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (3).jpeg" alt="Equipo completo" loading="lazy">
+                                <span class="carousel__caption">Equipo completo</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (4).jpeg" alt="En la duela" loading="lazy">
+                                <span class="carousel__caption">En la duela</span>
+                            </div>
+                        </div>
+                        <div class="carousel__slide">
+                            <div class="carousel__image-wrapper" data-lightbox>
+                                <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (5).jpeg" alt="Momentos memorables" loading="lazy">
+                                <span class="carousel__caption">Momentos memorables</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel__controls">
+                    <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel__dots"></div>
+                    <button class="carousel__btn carousel__btn--next" aria-label="Siguiente">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CONTACTO ═══════════ -->
+    <section id="contacto" class="contact section-padding">
+        <div class="container">
+            <div class="contact__wrapper">
+                <div class="contact__header reveal">
+                    <div class="contact__icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h2 class="contact__title">Contáctanos</h2>
+                    <p class="contact__subtitle">
+                        ¿Listo para elevar tu nivel? Comunícate directamente con nosotros en <span class="contact__highlight">San Juan del Río</span>.
                     </p>
                 </div>
-                
-                <!-- Links -->
-                <div class="flex flex-col space-y-4 md:w-1/3 text-center md:text-left font-heading text-2xl uppercase tracking-wider">
-                    <a href="#inicio" class="text-slate-300 hover:text-bronze hover:pl-2 transition-all block w-fit mx-auto md:mx-0">Inicio</a>
-                    <a href="#programas" class="text-slate-300 hover:text-bronze hover:pl-2 transition-all block w-fit mx-auto md:mx-0">Programas</a>
-                    <a href="#coach" class="text-slate-300 hover:text-bronze hover:pl-2 transition-all block w-fit mx-auto md:mx-0">Nuestro Coach</a>
-                    <a href="#contacto" class="text-slate-300 hover:text-bronze hover:pl-2 transition-all block w-fit mx-auto md:mx-0">Contacto</a>
+
+                <div class="contact__grid reveal">
+                    <!-- WhatsApp CTA (full width) -->
+                    <div class="contact__whatsapp">
+                        <div class="contact__whatsapp-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div class="contact__whatsapp-content">
+                            <h3 class="contact__whatsapp-title">Escríbenos por WhatsApp</h3>
+                            <p class="contact__whatsapp-text">La forma más rápida de obtener información sobre horarios, costos e inscripciones.</p>
+                        </div>
+                        <a href="https://wa.me/524271234567?text=Hola%2C%20me%20interesa%20info%20de%20EMB%20San%20Juan%20del%20R%C3%ADo" target="_blank" rel="noopener" class="contact__whatsapp-btn">
+                            <i class="fa-brands fa-whatsapp"></i> Enviar Mensaje
+                        </a>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="contact-card">
+                        <div class="contact-card__icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <span class="contact-card__label">Teléfono</span>
+                        <span class="contact-card__value">427 123 4567</span>
+                        <a href="tel:+524271234567" class="contact-card__link">
+                            Llamar <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="contact-card">
+                        <div class="contact-card__icon">
+                            <i class="fa-solid fa-map-pin"></i>
+                        </div>
+                        <span class="contact-card__label">Ubicación</span>
+                        <span class="contact-card__value">San Juan del Río, Querétaro</span>
+                        <a href="https://maps.google.com/?q=San+Juan+del+Rio+Queretaro" target="_blank" rel="noopener" class="contact-card__link">
+                            Ver Mapa <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Schedule -->
+                    <div class="contact-card">
+                        <div class="contact-card__icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <span class="contact-card__label">Horarios</span>
+                        <span class="contact-card__value">Lunes a Viernes<br>4:00 PM – 7:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__brand-logo">
+                        <img src="assets/emb.png" alt="EMB Logo">
+                        <span class="footer__brand-name">EMB</span>
+                    </div>
+                    <p class="footer__brand-text">Formando el futuro del baloncesto en San Juan del Río. Disciplina, técnica superior y pasión inquebrantable.</p>
                 </div>
 
-                <!-- Socials -->
-                <div class="md:w-1/3">
-                    <h4 class="text-white font-heading text-xl uppercase mb-6 text-center md:text-right tracking-widest">Síguenos</h4>
-                    <div class="flex justify-center md:justify-end gap-4">
-                        <a href="#" class="w-14 h-14 bg-navy-light text-white flex items-center justify-center text-2xl hover:bg-bronze hover:-translate-y-2 transition-all shadow-[4px_4px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_#FFFFFF]">
+                <nav class="footer__nav">
+                    <a href="#inicio" class="footer__nav-link">Inicio</a>
+                    <a href="#galeria" class="footer__nav-link">Galería</a>
+                    <a href="#programas" class="footer__nav-link">Programas</a>
+                    <a href="#coach" class="footer__nav-link">Nuestro Coach</a>
+                    <a href="#contacto" class="footer__nav-link">Contacto</a>
+                </nav>
+
+                <div class="footer__socials">
+                    <h4 class="footer__socials-title">Síguenos</h4>
+                    <div class="footer__socials-links">
+                        <a href="#" class="footer__social-btn" aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-14 h-14 bg-navy-light text-white flex items-center justify-center text-2xl hover:bg-bronze hover:-translate-y-2 transition-all shadow-[4px_4px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_#FFFFFF]">
+                        <a href="#" class="footer__social-btn" aria-label="Instagram">
                             <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer__social-btn" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            
-            <div class="flex flex-col md:flex-row justify-between items-center text-slate-500 gap-6 text-sm font-semibold uppercase tracking-wider">
+
+            <div class="footer__bottom">
                 <p>&copy; <span id="year"></span> EMB San Juan del Río. Todos los derechos reservados.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition-colors">Aviso de Privacidad</a>
-                    <a href="#" class="hover:text-white transition-colors border-l border-slate-700 pl-6">Términos</a>
+                <div class="footer__legal">
+                    <a href="#">Aviso de Privacidad</a>
+                    <a href="#">Términos</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- ═══════════ LIGHTBOX ═══════════ -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox__close" aria-label="Cerrar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="" alt="Vista ampliada">
+    </div>
+
     <!-- Scripts -->
-    <script>
-        // Set actual year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const menuLinks = menu.querySelectorAll('a');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu on clicking a link
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Form Submission Logic
-        const formContainer = document.getElementById('form-container');
-        const successMessage = document.getElementById('success-message');
-        const leadForm = document.getElementById('lead-form');
-        const resetBtn = document.getElementById('reset-form');
-
-        if(leadForm) {
-            leadForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // Simulation of API request / visual logic
-                const btnSubmit = leadForm.querySelector('button[type="submit"]');
-                const originalText = btnSubmit.innerHTML;
-                btnSubmit.innerHTML = '<i class="fa-solid fa-basketball fa-spin text-xl"></i> Procesando...';
-                btnSubmit.disabled = true;
-                btnSubmit.classList.add('opacity-80', 'cursor-not-allowed');
-
-                setTimeout(() => {
-                    formContainer.classList.add('hidden', 'opacity-0');
-                    successMessage.classList.remove('hidden');
-                    successMessage.classList.add('animate-fade-in');
-                    
-                    btnSubmit.innerHTML = originalText;
-                    btnSubmit.disabled = false;
-                    btnSubmit.classList.remove('opacity-80', 'cursor-not-allowed');
-                    leadForm.reset();
-                }, 1000); // 1s simulation
-            });
-        }
-
-        if(resetBtn) {
-            resetBtn.addEventListener('click', () => {
-                 successMessage.classList.add('hidden');
-                 formContainer.classList.remove('hidden', 'opacity-0');
-            });
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
