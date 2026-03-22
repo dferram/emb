@@ -58,38 +58,41 @@
         
         .masonry-grid {
             padding: 6rem 0;
-            column-count: 1;
-            column-gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6rem 2rem;
+            align-items: start;
         }
         
         @media (min-width: 768px) {
-            .masonry-grid { column-count: 2; }
+            .masonry-grid { grid-template-columns: 1fr 1fr; }
         }
         
         @media (min-width: 1024px) {
-            .masonry-grid { column-count: 3; }
+            .masonry-grid { grid-template-columns: 1fr 1fr 1fr; }
         }
         
+        /* ================== TESTIMONIAL CARDS ================== */
         .testimonial-card {
-            break-inside: avoid;
             background: var(--white);
             border: 2px solid var(--gray-300);
-            padding: 2.5rem 2rem;
-            margin-bottom: 2rem;
+            padding: 7rem 2.5rem 2.5rem 2.5rem; /* Massive top padding to guarantee no text overlap */
+            margin-top: 1rem;
+            margin-bottom: 1rem;
             position: relative;
             transition: all var(--transition-base);
         }
-        
+
         .testimonial-card:hover {
             border-color: var(--navy);
             transform: translateY(-6px);
             box-shadow: 12px 12px 0px var(--bronze);
         }
-        
+
         .testimonial-card__quote-icon {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            bottom: 2.5rem;
+            right: 2rem;
             font-size: 3rem;
             color: var(--gray-100);
             z-index: 0;
@@ -97,7 +100,7 @@
         }
         
         .testimonial-card:hover .testimonial-card__quote-icon {
-            color: rgba(255, 101, 0, 0.1); /* light bronze */
+            color: rgba(255, 101, 0, 0.1);
         }
         
         .testimonial-card__text {
@@ -121,17 +124,19 @@
         }
         
         .testimonial-card__avatar {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 50%;
+            width: 3.5rem !important;
+            height: 3.5rem !important;
+            flex: 0 0 3.5rem !important;
+            border-radius: 50% !important;
             background: var(--navy);
             color: var(--white);
-            display: flex;
+            display: flex !important;
             align-items: center;
             justify-content: center;
             font-family: 'Teko', sans-serif;
             font-size: 1.5rem;
-            flex-shrink: 0;
+            overflow: hidden;
+            margin: 0 !important;
         }
         
         .testimonial-card__info {
@@ -144,13 +149,14 @@
             color: var(--navy);
             font-size: 1.0625rem;
             line-height: 1.2;
+            margin-bottom: 2px;
         }
         
         .testimonial-card__role {
             color: var(--gray-500);
             font-size: 0.875rem;
         }
-        
+
         /* Highlighted Testimonial */
         .testimonial-card--highlight {
             background: var(--navy);
@@ -187,6 +193,52 @@
 
         .testimonial-card--highlight:hover {
             box-shadow: 12px 12px 0px var(--bronze);
+        }
+
+        /* Polaroid Style Pop-out */
+        .testimonial-card__polaroid {
+            position: absolute;
+            top: -55px;
+            right: -15px;
+            background: #fff;
+            padding: 8px 8px 25px 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+            transform: rotate(5deg);
+            width: 130px;
+            z-index: 20;
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Alternate direction for even cards */
+        .testimonial-card:nth-child(even) .testimonial-card__polaroid {
+            right: auto;
+            left: -15px;
+            transform: rotate(-4deg);
+        }
+
+        .testimonial-card__polaroid:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 30;
+        }
+
+        @media (max-width: 639px) {
+            .testimonial-card__polaroid {
+                width: 110px;
+                top: -30px;
+                right: -15px;
+            }
+            .testimonial-card:nth-child(even) .testimonial-card__polaroid {
+                left: -15px;
+            }
+        }
+
+        .testimonial-card__polaroid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid var(--gray-200);
         }
         
         .newspaper-feature {
@@ -297,7 +349,7 @@
                         Como comentó un pupilo nacional tras el reportaje de <em>El Sol de San Juan del Río</em>:
                     </p>
                     <blockquote style="font-size: 1.5rem; font-style: italic; font-weight: 700; color: var(--bronze); border-left: 4px solid var(--navy); padding-left: 1rem; margin-top: 1rem;">
-                        "Ese es mi coach y mi maestro de vida 💪"
+                        "Ese es mi coach y mi maestro de vida"
                     </blockquote>
                 </div>
             </div>
@@ -308,92 +360,86 @@
     <section class="container" style="padding-bottom: 6rem;">
         <div class="masonry-grid reveal">
             
-            <!-- Highlighted Testimonial -->
+            <!-- Card 1 -->
             <div class="testimonial-card testimonial-card--highlight">
                 <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                
+                <div class="testimonial-card__polaroid">
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (10).jpeg" alt="Testimonio foto">
+                </div>
+                
                 <p class="testimonial-card__text">
-                    "Entrenar en EMB me cambió completamente la forma de ver el juego. No solo mejoré mi bote y mi tiro, aprendí a leer la defensa y sobre todo a tener disciplina. Hemos ganado torneos duros, pero la hermandad que tenemos en el equipo es lo mejor de todo."
+                    "Entrenar con el coach Peter me cambió la vida, dentro de la cancha mi crecimiento como jugador creció mucho, pero fuera de ella me enseñó valores como la disciplina y la constancia, valores que llevo conmigo para mi carrera universitaria y para toda la vida. Gracias al coach Peter crecí como persona y como jugador."
                 </p>
                 <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">S</div>
+                    <div class="testimonial-card__avatar">F</div>
                     <div class="testimonial-card__info">
-                        <span class="testimonial-card__name">Santiago</span>
-                        <span class="testimonial-card__role">Jugador Categoría Juvenil</span>
+                        <span class="testimonial-card__name">Fernando R.</span>
+                        <span class="testimonial-card__role">Ahora universitario</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Card 2 -->
             <div class="testimonial-card">
                 <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                
+                <div class="testimonial-card__polaroid">
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM.jpeg" alt="Equipo">
+                </div>
+                
                 <p class="testimonial-card__text">
-                    "Mi hijo empezó desde los 8 años en la academia. El cambio ha sido increíble; además de la técnica deportiva, el coach les enseña valores. Es un ambiente súper sano y competitivo. Cada sábado estamos en la grada apoyando al equipo."
+                    "El nivel de los entrenamientos es intenso. Te preparan física y mentalmente para cada partido. Gracias a EMB he podido destacar en ligas estatales y entender el juego a otro nivel."
                 </p>
                 <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">MF</div>
+                    <div class="testimonial-card__avatar" style="background: var(--bronze);">M</div>
                     <div class="testimonial-card__info">
-                        <span class="testimonial-card__name">María Fernanda</span>
-                        <span class="testimonial-card__role">Madre de Familia</span>
+                        <span class="testimonial-card__name">Miguel A.</span>
+                        <span class="testimonial-card__role">Jugador Selectivo</span>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Card 3 -->
             <div class="testimonial-card">
                 <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
-                <p class="testimonial-card__text">
-                    "Las clínicas de tiro fueron la clave para que me aceptaran en la selección de mi preparatoria. El nivel de exigencia es alto, te hacen repetir hasta que la mecánica sea perfecta, pero los resultados hablan por sí solos en la duela."
-                </p>
-                <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">D</div>
-                    <div class="testimonial-card__info">
-                        <span class="testimonial-card__name">Diego R.</span>
-                        <span class="testimonial-card__role">Ex Alumno (Ahora en Prepa)</span>
-                    </div>
+                
+                <div class="testimonial-card__polaroid">
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.15 PM (6).jpeg" alt="Femenil">
                 </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                
                 <p class="testimonial-card__text">
-                    "Yo empecé con cero experiencia. Al principio me frustraba, pero aquí nunca te dejan atrás. Tienen programas desde cero. Ahora formo parte del equipo femenil Galaxy y hemos sacado terceros lugares a nivel estatal."
+                    "Llegué sin mucha experiencia, pero enseguida me hicieron sentir parte del equipo. Me encanta que enfocan mucho en la técnica y no dejan a nadie atrás. Es una gran familia."
                 </p>
                 <div class="testimonial-card__author">
                     <div class="testimonial-card__avatar">V</div>
                     <div class="testimonial-card__info">
-                        <span class="testimonial-card__name">Valeria</span>
-                        <span class="testimonial-card__role">Jugadora - Equipo Femenil</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
-                <p class="testimonial-card__text">
-                    "La intensidad de los entrenamientos es brutal (en el buen sentido). Te preparan para ritmos de juego altos. Mucho acondicionamiento físico. Sin esa preparación, las medallas del torneo de verano no habrían sido posibles."
-                </p>
-                <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">E</div>
-                    <div class="testimonial-card__info">
-                        <span class="testimonial-card__name">Eduardo</span>
-                        <span class="testimonial-card__role">Jugador - Categoría Libre</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Highlighted Testimonial 2 -->
-            <div class="testimonial-card testimonial-card--highlight">
-                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
-                <p class="testimonial-card__text">
-                    "Como padres siempre buscamos un lugar seguro donde nuestros hijos crezcan. EMB superó nuestras expectativas. El coach es un verdadero líder."
-                </p>
-                <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">H</div>
-                    <div class="testimonial-card__info">
-                        <span class="testimonial-card__name">Héctor G.</span>
-                        <span class="testimonial-card__role">Padre de Familia</span>
+                        <span class="testimonial-card__name">Valeria G.</span>
+                        <span class="testimonial-card__role">Equipo Femenil</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Card 4 -->
+            <div class="testimonial-card testimonial-card--highlight">
+                <i class="fa-solid fa-quote-right testimonial-card__quote-icon"></i>
+                
+                <div class="testimonial-card__polaroid">
+                    <img src="assets/WhatsApp Image 2026-03-07 at 3.01.11 PM.jpeg" alt="Padre de Familia">
+                </div>
+                
+                <p class="testimonial-card__text">
+                    "Como padre busco un ambiente sano, disciplinado y donde mis hijos puedan desarrollarse. El trabajo que hace el Coach Peter es invaluable. No solo forma deportistas, forma buenos ciudadanos."
+                </p>
+                <div class="testimonial-card__author">
+                    <div class="testimonial-card__avatar" style="background: var(--white); color: var(--navy);">H</div>
+                    <div class="testimonial-card__info">
+                        <span class="testimonial-card__name">Héctor Díaz</span>
+                        <span class="testimonial-card__role">Padre de Familia</span>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </section>
 
@@ -430,6 +476,12 @@
                     <div class="footer__socials-links">
                         <a href="https://www.facebook.com/peter.martinez.664392" target="_blank" rel="noopener" class="footer__social-btn" aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="mailto:academia.baloncesto.sjr@gmail.com" class="footer__social-btn" aria-label="Correo">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/4271104922?text=Hola%2C%20me%20interesa%20info%20de%20EMB%20San%20Juan%20del%20R%C3%ADo" target="_blank" rel="noopener" class="footer__social-btn" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
